@@ -1,3 +1,4 @@
+#coding: utf-8
 import config
 import random
 from requests_oauthlib import OAuth1Session

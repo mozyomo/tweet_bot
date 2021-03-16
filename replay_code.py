@@ -8,6 +8,8 @@ import datetime
 import json
 import pandas as pd
 import sys
+from tweet_text import reply_text
+
 oauth = OAuth1Session(
     config.Consumer_API_key, 
     config.Consumer_API_secret_key, 
@@ -52,7 +54,7 @@ if response.status_code == 200 :
 
     #返信内容の決定,返信内容には必ずadress_nameを入れること
     url = "https://api.twitter.com/1.1/statuses/update.json"
-    body_list = [f"この{adress_name}くさいワン！\n੯･͡u､\n　　\=|ヽ\n　　 ),|,,(_);:ﾉ",f"╭◜◝ ͡ ◜◝ ͡ ◜◝ ͡ ◜◝╮\n( ՞ةڼ◔　 　 )　 ﾓｸﾓｸ\n╰◟◞ ͜ ◟◞ ͜ ◟◞ ͜ ◟◞╯\n///////////\n//////////\n{adress_name} <それはおかしい",f"キチガイかよ！wこいつww\n　 ( ◠‿◠ )\n＿(__つ/￣￣￣/＿\n　　＼/　　　/\n　　　 ￣￣￣\n\n　 ( ◠‿◠ )・・・\n＿(__つ/￣￣￣/＿\n　　＼/　　　/\n　　　 ￣￣￣\n\n　( ◡⁀◡ ){adress_name}かよ\n＿(__つ/￣￣￣/＿",f"ここで逮捕された{adress_name}の様子を見てみましょう\n　\n男の尻はまだか！\n￣￣∨￣￣￣￣￣\n┳━┳━-┳━┓\n┃ ┃_∧ ┃ ┃\n┃ (┃՞ਊ՞┃ ┃ｲﾋﾋ\n┃（づ ﾞо┃\n┃ / ┃ /┃┃\n┃し┃ﾞＪ┃\nと全く反省の色がありません"]
+    body_list = reply_text(adress_name)
     max_index = len(body_list) - 1
     body_index =random.randint(0, max_index)
     body = body_list[body_index] 
